@@ -1,0 +1,9 @@
+// Services
+Regras de negocios são criadas em services
+
+// Repositories
+- É necessario criar um repositorie novo caso tenha algum metodo personalizado
+  diferente de create, update, remove, find etc que o typeORM tem. Um exemplo de
+  caso é o findByDate de AppointmentsRepository.
+- Os models podem ser usados como repositorios para poder acessar o banco
+
