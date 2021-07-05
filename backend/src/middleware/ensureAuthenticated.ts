@@ -26,18 +26,14 @@ export default function ensureAuthenticate(
   // Separa o bearer do token em si
   const [, token] = authHeader.split(' ');
 
-  try {
-    const decoded = verify(token, authConfig.jwt.secret);
+  const decoded = verify(token, authConfig.jwt.secret);
 
-    // as enforces TokenPayload to use a different type
-    const { sub } = decoded as TokenPayload;
+  // as enforces TokenPayload to use a different type
+  const { sub } = decoded as TokenPayload;
 
-    request.user = {
-      id: sub,
-    };
+  request.user = {
+    id: sub,
+  };
 
-    return next();
-  } catch (err) {
-    throw new AppError('Invalid JWT token', 401);
-  }
+  return next();
 }
