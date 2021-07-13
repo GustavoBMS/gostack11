@@ -30,7 +30,7 @@ usersRouter.post('/', async (request, response) => {
 usersRouter.patch(
   '/avatar',
   ensureAuthenticated,
-  upload.single('avatar'),
+  upload.single('avatar'), //Se essa linha parar de funcionar, apagar a pasta @types/multer/node_modules
   async (request, response) => {
     const updateUserAvatar = new UpdateUserAvatarService();
 
