@@ -4,7 +4,7 @@ import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { FormHandles } from '@unform/core';
 
-import AuthContext from '../../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext';
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import logoImg from '../../assets/logo.svg';
@@ -16,6 +16,10 @@ import { Container, Content, Background } from './styles';
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+
+  const { signIn } = useContext(AuthContext);
+
+  console.log(signIn);
 
   const handleSubmit = useCallback(async (data: object) => {
     try {
@@ -29,16 +33,14 @@ const SignIn: React.FC = () => {
       await schema.validate(data, {
         abortEarly: false,
       });
+
+      signIn();
     } catch (err) {
       const errors = getValidationErrors(err);
 
       formRef.current?.setErrors(errors);
     }
-  }, []);
-
-  const auth = useContext(AuthContext);
-
-  console.log(auth);
+  }, [signIn]);
 
   return (
     <Container>
