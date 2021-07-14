@@ -1,9 +1,10 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useContext } from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { FormHandles } from '@unform/core';
 
+import AuthContext from '../../context/AuthContext';
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import logoImg from '../../assets/logo.svg';
@@ -16,7 +17,7 @@ import { Container, Content, Background } from './styles';
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit = useCallback( async (data: object) => {
+  const handleSubmit = useCallback(async (data: object) => {
     try {
       formRef.current?.setErrors({});
 
@@ -35,6 +36,9 @@ const SignIn: React.FC = () => {
     }
   }, []);
 
+  const auth = useContext(AuthContext);
+
+  console.log(auth);
 
   return (
     <Container>
@@ -44,20 +48,20 @@ const SignIn: React.FC = () => {
         <Form ref={formRef} onSubmit={handleSubmit}>
           <h1>Faça seu logon</h1>
 
-          <Input 
+          <Input
             icon={FiMail}
             name="email"
             placeholder="E-mail"
-            type="email" 
+            type="email"
           />
 
-          <Input 
+          <Input
             icon={FiLock}
             name="password"
-            type="password" 
+            type="password"
             placeholder="Senha"
           />
-          
+
           <Button type="submit">Entrar</Button>
 
           <a href="forgot">Esqueci minha senha</a>
