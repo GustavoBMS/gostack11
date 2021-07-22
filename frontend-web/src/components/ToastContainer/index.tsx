@@ -20,7 +20,6 @@ const ToastContainer: React.FC<ToastContainerProps> = ({ messages }) => {
       leave: { right: '-120%', opacity: 0 },
     }
   );
-  console.log(messagesWithTransitions);
 
   return (
     <Container>

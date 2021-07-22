@@ -3,8 +3,6 @@ import { IconBaseProps } from 'react-icons';
 import { FiAlertCircle } from 'react-icons/fi';
 import { useField } from '@unform/core';
 
-import Tooltip from '../Tooltip';
-
 import { Container, Error } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -25,7 +23,7 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
   const handleInputFocus = useCallback(() => {
     setIsFocused(true)
   }, [])
-  
+
   const handleInputBlur = useCallback(() => {
     setIsFocused(false);
 
@@ -35,8 +33,8 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
       setIsFilled(false);
     }
   }, []);
-  
-  useEffect(() =>{
+
+  useEffect(() => {
     registerField({
       name: fieldName,
       ref: inputRef.current,
@@ -46,13 +44,13 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
 
   return (
     <Container isErrored={!!error} isFilled={isFilled} isFocused={isFocused}>
-      { Icon && <Icon size={20} /> }
+      {Icon && <Icon size={20} />}
       <input
         onFocus={handleInputFocus}
-        onBlur={handleInputBlur} 
-        defaultValue={defaultValue} 
-        ref={inputRef} 
-        {...rest} 
+        onBlur={handleInputBlur}
+        defaultValue={defaultValue}
+        ref={inputRef}
+        {...rest}
       />
 
       {error && (
