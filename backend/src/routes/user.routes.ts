@@ -10,21 +10,21 @@ import ensureAuthenticated from '../middleware/ensureAuthenticated';
 const usersRouter = Router();
 const upload = multer(uploadConfig);
 
-usersRouter.use(ensureAuthenticated);
+//usersRouter.use(ensureAuthenticated);
 
 usersRouter.post('/', async (request, response) => {
-    const { name, email, password } = request.body;
+  const { name, email, password } = request.body;
 
-    // Prestar atencao pra quando for classe para instanciar direito
-    const createUser = new CreateUserService();
+  // Prestar atencao pra quando for classe para instanciar direito
+  const createUser = new CreateUserService();
 
-    const user = await createUser.execute({
-      name,
-      email,
-      password,
-    });
+  const user = await createUser.execute({
+    name,
+    email,
+    password,
+  });
 
-    return response.json(user);
+  return response.json(user);
 });
 
 usersRouter.patch(
